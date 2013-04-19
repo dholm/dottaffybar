@@ -1,0 +1,4 @@
+dottaffybar
+===========
+
+My Taffybar configuration
