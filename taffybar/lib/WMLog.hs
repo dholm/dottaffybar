@@ -10,6 +10,8 @@ import Graphics.UI.Gtk (
   Widget, WidgetClass, ContainerClass, escapeMarkup, widgetShowAll,
   toContainer, toWidget, hBoxNew, vBoxNew, frameNew, containerAdd)
 
+import Solarized
+
 import System.Taffybar.Pager (
   PagerConfig(..), defaultPagerConfig,
   colorize, shorten, wrap, escape, pagerNew)
@@ -24,17 +26,17 @@ data WMLogConfig = WMLogConfig { titleLength :: Int
                                }
 
 pagerConfig pixbufs cfg = defaultPagerConfig
-  { activeWindow     = fg "green" . escapeMarkup . fmtTitle cfg
+  { activeWindow     = fgbg solarizedBase1 solarizedBase02 . escapeMarkup . fmtTitle cfg
   , activeLayout     = \x -> case x of
-                               "left"    ->                   "[]="
-                               "top"     -> fgbg "blue" "red" "TTT"
-                               "full"    -> fgbg "blue" "red" "[ ]"
-                               otherwise -> fgbg "blue" "red" "???"
-  , activeWorkspace  = bold . fgbg "black" "green" . escapeMarkup
-  , hiddenWorkspace  = bold . fg "orange" . escapeMarkup
+                               "left"    -> "[]="
+                               "top"     -> "TTT"
+                               "full"    -> "[ ]"
+                               otherwise -> fg solarizedRed "???"
+  , activeWorkspace  = bold . fgbg solarizedBase1 solarizedBase02 . escapeMarkup
+  , hiddenWorkspace  = bold . fg solarizedBase0 . escapeMarkup
   , emptyWorkspace   = escapeMarkup
   , visibleWorkspace = escapeMarkup
-  , urgentWorkspace  = bold . fgbg "red" "yellow" . escapeMarkup
+  , urgentWorkspace  = bold . fg solarizedRed . escapeMarkup
   , hideEmptyWs      = False
   , wsButtonSpacing  = 3
   , widgetSep        = ""
