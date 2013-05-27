@@ -4,26 +4,21 @@ import Sep (sepW)
 import Utils (fg, bg, fgbg)
 import WorkspaceImages (loadImages, selectImage)
 
-import System.Taffybar.WorkspaceSwitcher (wspaceSwitcherNew)
+import Data.Maybe (fromMaybe)
 
 import Graphics.UI.Gtk (
   Widget, WidgetClass, ContainerClass, escapeMarkup, widgetShowAll,
-  toContainer, toWidget, hBoxNew, vBoxNew, frameNew, containerAdd)
+  toContainer, toWidget, hBoxNew, vBoxNew, frameNew, containerAdd,
+  postGUIAsync)
 
 import Solarized
 
 import System.Taffybar.Pager (
-  PagerConfig(..), defaultPagerConfig,
-  colorize, shorten, wrap, escape, pagerNew)
+  PagerConfig(..), Workspace(..), defaultPagerConfig,
+  markWs, colorize, shorten, wrap, escape, pagerNew)
 import System.Taffybar.LayoutSwitcher (layoutSwitcherNew)
 import System.Taffybar.WindowSwitcher (windowSwitcherNew)
-
-data WMLogConfig = WMLogConfig { titleLength :: Int
-                               , wsImageHeight :: Int
-                               , titleRows :: Bool
-                               , stackWsTitle :: Bool
-                               , wsBorderColor :: Color
-                               }
+import System.Taffybar.WorkspaceSwitcher (wspaceSwitcherNew)
 
 pagerConfig pixbufs cfg = defaultPagerConfig
   { activeWindow     = fgbg solarizedBase1 solarizedBase02 . escapeMarkup . fmtTitle cfg
@@ -32,17 +27,29 @@ pagerConfig pixbufs cfg = defaultPagerConfig
                                "top"     -> "TTT"
                                "full"    -> "[ ]"
                                otherwise -> fg solarizedRed "???"
-  , activeWorkspace  = bold . fgbg solarizedBase1 solarizedBase02 . escapeMarkup
-  , hiddenWorkspace  = bold . fg solarizedBase0 . escapeMarkup
-  , emptyWorkspace   = escapeMarkup
-  , visibleWorkspace = escapeMarkup
-  , urgentWorkspace  = bold . fg solarizedRed . escapeMarkup
+  , activeWorkspace  = wsStyle cfg (Just Red) $ bold . fgbg solarizedBase1 solarizedBase02
+  , hiddenWorkspace  = wsStyle cfg Nothing $ bold . fg solarizedBase0
+  , emptyWorkspace   = wsStyle cfg Nothing $ id
+  , visibleWorkspace = wsStyle cfg Nothing $ id
+  , urgentWorkspace  = markWs $ bold . fg solarizedRed . escapeMarkup
   , hideEmptyWs      = False
   , wsButtonSpacing  = 3
   , widgetSep        = ""
   , imageSelector    = selectImage pixbufs
   , wrapWsButton     = wrapBorder $ wsBorderColor cfg
   }
+
+data WMLogConfig = WMLogConfig { titleLength :: Int
+                               , wsImageHeight :: Int
+                               , titleRows :: Bool
+                               , stackWsTitle :: Bool
+                               , wsBorderColor :: Color
+                               }
+
+wsStyle cfg borderColor markupFct ws = do
+  let col = fromMaybe (wsBorderColor cfg) borderColor
+  postGUIAsync $ widgetBgColor col (wsContainer ws)
+  markWs (markupFct . escapeMarkup) ws
 
 wrapBorder color w = do
   f <- frameNew
