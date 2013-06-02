@@ -5,6 +5,7 @@ import WMLog (WMLogConfig(..))
 import Graphics.UI.Gtk.General.RcStyle (rcParseString)
 import System.Taffybar (defaultTaffybar, defaultTaffybarConfig, barHeight,
                         widgetSpacing, startWidgets, endWidgets)
+import System.Taffybar.Battery
 
 import Solarized
 
@@ -38,7 +39,7 @@ main = do
           , W.volumeW
           , W.micW
           , W.pidginPipeW $ barHeight cfg
---          , W.thunderbirdW (barHeight cfg) Green Black
+          , W.thunderbirdW (barHeight cfg) Green Black
 --          , W.cpuScalingW
 --          , W.cpuFreqsW
 --          , W.fanW
@@ -46,6 +47,7 @@ main = do
 --          , W.pingMonitorW "www.google.com" "G"
 --          , W.openvpnW
 --          , W.tpBattStatW $ barHeight cfg
+          , batteryBarNew defaultBatteryConfig 10
           , sep
           , W.clockW
           , sep
