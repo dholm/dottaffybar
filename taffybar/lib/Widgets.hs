@@ -4,6 +4,7 @@ module Widgets(
   cpuFreqsW,
   cpuScalingW,
   cpuGovW,
+  cpuIntelPstateW,
   ekigaW,
   fanW,
   fcrondynW,
@@ -29,6 +30,7 @@ import Brightness(brightnessW)
 import Clock(clockW)
 import CpuFreqs(cpuFreqsW)
 import CpuScaling(cpuScalingW, cpuGovW)
+import CpuIntelPstate(cpuIntelPstateW)
 import Ekiga(ekigaW)
 import Fan(fanW)
 import Fcrondyn(fcrondynW)
