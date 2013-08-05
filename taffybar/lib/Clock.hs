@@ -4,6 +4,6 @@ import System.Taffybar.SimpleClock (textClockNew)
 import Utils (defaultDelay)
 
 clockFace :: String
-clockFace = "<span fgcolor='" ++ solarizedOrange ++ "'>%a %b %_d %Y %H:%M:%S</span>"
+clockFace = "<span fgcolor='" ++ solarizedOrange ++ "'>%a %b %_d %Y %H:%M</span>"
 
 clockW = textClockNew Nothing clockFace defaultDelay
