@@ -26,7 +26,7 @@ pagerConfig pixbufs cfg = defaultPagerConfig
   { activeWindow     = fgbg solarizedBase1 solarizedBase02 . escapeMarkup . fmtTitle cfg
   , activeLayout     = \x -> case x of
       "left"    -> return "[]="
-      "top"     -> return $ fgbg solarizedBase1 solarizedBase02 "TTT"
+      "top"     -> return "TTT"
       "full"    -> do
         cnt <- windowCount
         let fmt = if 0 <= cnt && cnt < 10
