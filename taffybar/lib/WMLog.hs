@@ -29,10 +29,9 @@ pagerConfig pixbufs cfg = defaultPagerConfig
       "top"     -> return "TTT"
       "full"    -> do
         cnt <- windowCount
-        let fmt = if 0 <= cnt && cnt < 10
-                  then show cnt
-                  else "+"
-        return $ fgbg solarizedBase1 solarizedBase02 $ "[" ++ fmt ++ "]"
+        let numFmt = if 0 <= cnt && cnt < 10 then show cnt else "+"
+        let color = if cnt > 1 then fgbg solarizedBase1 solarizedBase02 else id
+        return $ color $ "[" ++ numFmt ++ "]"
       otherwise -> return $ fgbg solarizedRed solarizedBase02 "???"
   , activeWorkspace  = wsStyle cfg (Just Red) $ bold . fgbg solarizedBase1 solarizedBase02
   , hiddenWorkspace  = wsStyle cfg Nothing $ bold . fg solarizedBase0
