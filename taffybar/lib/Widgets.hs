@@ -18,7 +18,6 @@ module Widgets(
   openvpnW,
   pidginPipeW,
   pingMonitorW,
-  pingLabelW,
   progressBarW,
   sepW,
   systrayW,
@@ -45,7 +44,7 @@ import NetStats(netStatsW)
 import NotifyArea(notifyAreaW)
 import Openvpn(openvpnW)
 import PidginPipe(pidginPipeW)
-import PingMonitor(pingMonitorW, pingLabelW)
+import PingMonitor(pingMonitorW)
 import ProgressBar(progressBarW)
 import Sep(sepW)
 import Systray(systrayW)
