@@ -21,6 +21,7 @@ module Widgets(
   progressBarW,
   screenSaverW,
   sepW,
+  speakerW,
   systrayW,
   tpBattStatW,
   thunderbirdW,
@@ -49,6 +50,7 @@ import PingMonitor(pingMonitorW)
 import ProgressBar(progressBarW)
 import ScreenSaver(screenSaverW)
 import Sep(sepW)
+import Speaker(speakerW)
 import Systray(systrayW)
 import TPBattStat(tpBattStatW)
 import Thunderbird(thunderbirdW)
