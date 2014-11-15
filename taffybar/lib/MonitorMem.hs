@@ -1,16 +1,20 @@
 module MonitorMem(monitorMemW) where
 import Color as C
+import Utils (pollingGraphMain)
 import System.Information.Memory (parseMeminfo, memoryUsedRatio)
 import System.Taffybar.Widgets.PollingGraph (
   pollingGraphNew, defaultGraphConfig, graphDataColors,
   graphDirection, GraphDirection(..))
 
-graphCfg colors = defaultGraphConfig { graphDataColors = colors
-                                     , graphDirection = RIGHT_TO_LEFT
-                                     }
+main = pollingGraphMain 1 monitorMemReader
+monitorMemW = graph 1 monitorMemReader
 
-monitorMemW = graph $ do
+ graphCfg colors = defaultGraphConfig { graphDataColors = colors
+                                      , graphDirection = RIGHT_TO_LEFT
+                                      }
+
+monitorMemReader = do
   mi <- parseMeminfo
   return [memoryUsedRatio mi]
 
-graph = pollingGraphNew (graphCfg [rgba C.Red 1]) 1.0
+graph delay = pollingGraphNew (graphCfg [(0x26/0xff, 0x8b/0xff, 0xd2/0xff, 1)]) delay
