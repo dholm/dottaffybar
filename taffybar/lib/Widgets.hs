@@ -19,6 +19,7 @@ module Widgets(
   pidginPipeW,
   pingMonitorW,
   progressBarW,
+  qtemailW,
   screenSaverW,
   sepW,
   speakerW,
@@ -48,6 +49,7 @@ import Openvpn(openvpnW)
 import PidginPipe(pidginPipeW)
 import PingMonitor(pingMonitorW)
 import ProgressBar(progressBarW)
+import QtEmail(qtemailW)
 import ScreenSaver(screenSaverW)
 import Sep(sepW)
 import Speaker(speakerW)
