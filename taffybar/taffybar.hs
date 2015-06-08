@@ -38,8 +38,8 @@ main = do
           , sep
 --          , W.netW
 --          , sep
-          , W.volumeW
-          , W.micW
+--          , W.volumeW
+--          , W.micW
           , W.pidginPipeW $ barHeight cfg
           , W.thunderbirdW (barHeight cfg) Green Black
 --          , W.cpuScalingW
