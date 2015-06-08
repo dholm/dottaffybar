@@ -14,10 +14,10 @@ colors = map C.rgb $ [C.Black, C.Gray] ++ take 10 (cycle [C.Blue, C.Orange])
 
 lastBrightness = do
   home <- getEnv "HOME"
-  system $ home ++ "/bin/brightness last > /dev/null"
+  system $ home ++ "/.local/bin/brightness last > /dev/null"
 
 readBrightnessBar = do
-  system "$HOME/bin/brightness last > /dev/null"
+  system "$HOME/.local/bin/brightness last > /dev/null"
   p <- getBrightness
   return (p, colors)
 

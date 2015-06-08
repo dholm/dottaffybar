@@ -9,10 +9,9 @@ import System.Taffybar.Widgets.PollingGraph (
 main = pollingGraphMain 1 monitorMemReader
 monitorMemW = graph 1 monitorMemReader
 
- graphCfg colors = defaultGraphConfig { graphDataColors = colors
-                                      , graphDirection = RIGHT_TO_LEFT
-                                      }
-
+graphCfg colors = defaultGraphConfig { graphDataColors = colors
+                                     , graphDirection = RIGHT_TO_LEFT
+                                     }
 monitorMemReader = do
   mi <- parseMeminfo
   return [memoryUsedRatio mi]
