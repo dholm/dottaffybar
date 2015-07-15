@@ -10,7 +10,6 @@ module Utils(
   systemReadLines, readProc, chompProc, procSuccess,
   procToChan, actToChanDelay, listToChan
 ) where
-import Prelude hiding (readFile)
 import System.IO (readFile)
 import Control.Concurrent (
   forkIO, threadDelay,
