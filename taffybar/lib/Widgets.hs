@@ -16,6 +16,8 @@ module Widgets(
   netStatsW,
   notifyAreaW,
   openvpnW,
+  paSinkW,
+  paSourceW,
   pidginPipeW,
   pingMonitorW,
   progressBarW,
@@ -46,6 +48,7 @@ import Net(netW)
 import NetStats(netStatsW)
 import NotifyArea(notifyAreaW)
 import Openvpn(openvpnW)
+import PulseAudioEndpoints(paSinkW,paSourceW)
 import PidginPipe(pidginPipeW)
 import PingMonitor(pingMonitorW)
 import ProgressBar(progressBarW)
