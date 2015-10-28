@@ -47,7 +47,7 @@ main = do
 --          , W.fanW
           , W.brightnessW
 --          , W.pingMonitorW "www.google.com" "G"
---          , W.openvpnW
+--          , W.openvpnW "somevpn" "svpn"
 --          , W.tpBattStatW $ barHeight cfg
           , batteryBarNew defaultBatteryConfig 10
           , sep
