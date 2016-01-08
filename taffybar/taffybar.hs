@@ -13,7 +13,7 @@ import Solarized
 
 main = do
   let cfg = defaultTaffybarConfig { barHeight = 20
-                                  , widgetSpacing = 5
+                                  , widgetSpacing = 4
                                   }
       font = "Monospace 8"
       fgColor = hexColor $ RGB (0.51, 0.58, 0.59)
@@ -23,7 +23,7 @@ main = do
       sep = W.sepW Black 2
 
       start = [ W.wmLogNew WMLogConfig { titleLength = 30
-                                       , wsImageHeight = 20
+                                       , wsImageHeight = 16
                                        , titleRows = False
                                        , stackWsTitle = False
                                        , wsBorderColor = RGB (0.6, 0.5, 0.2)
@@ -31,8 +31,8 @@ main = do
               , W.notifyAreaW
               ]
       end = reverse
-          [ W.monitorCpuW 50
-          , W.monitorMemW 50
+          [ W.monitorCpuW 30
+          , W.monitorMemW 30
           , W.progressBarW
           , W.netStatsW
           , sep
