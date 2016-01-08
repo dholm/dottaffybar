@@ -31,8 +31,8 @@ main = do
               , W.notifyAreaW
               ]
       end = reverse
-          [ W.monitorCpuW
-          , W.monitorMemW
+          [ W.monitorCpuW 50
+          , W.monitorMemW 50
           , W.progressBarW
           , W.netStatsW
           , sep
