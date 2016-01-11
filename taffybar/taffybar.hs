@@ -2,6 +2,7 @@ import qualified Widgets as W
 import Color (Color(..), hexColor)
 import WMLog (WMLogConfig(..))
 import Utils (colW)
+import Width (charsFitInPx, getScreenDPI, screenPctToPx)
 
 import Graphics.UI.Gtk.General.RcStyle (rcParseString)
 import System.Taffybar (defaultTaffybar, defaultTaffybarConfig,
@@ -26,7 +27,9 @@ profileHDPlus = P { height = 20
                   }
 
 main = do
+  dpi <- getScreenDPI
   isBot <- elem "--bottom" <$> getArgs
+  klompWidthPx <- screenPctToPx 15.9375
   let cfg = defaultTaffybarConfig { barHeight = height profile
                                   , widgetSpacing = spacing profile
                                   , barPosition = if isBot then Bottom else Top
@@ -37,7 +40,7 @@ main = do
       textColor = hexColor $ RGB (0.58, 0.63, 0.63)
 
       sep = W.sepW Black 2
-      klompChars = 32
+      klompChars = charsFitInPx dpi (fontSizePt profile) klompWidthPx
 
       start = [ W.wmLogNew WMLogConfig { titleLength = titleLen profile
                                        , wsImageHeight = workspaceImageHeight profile
