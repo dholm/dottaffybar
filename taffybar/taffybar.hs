@@ -15,7 +15,7 @@ import System.Environment (getArgs)
 
 import Solarized
 
-profile = profileHDPlus
+profile = profileFHD
 
 profileFHD = P { height = 38
                , spacing = 5
